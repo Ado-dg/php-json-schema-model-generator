@@ -9,6 +9,7 @@ declare(strict_types = 1);
 {% foreach use as import %}
     use {{ import }};
 {% endforeach %}
+    use ado_dg\IntegrationModelGenerator\GeneratedModel;
 
 /**
  * Class {{ class }}
@@ -20,7 +21,7 @@ declare(strict_types = 1);
  * If you need to implement something in this class use inheritance. Else you will loose your changes if the classes
  * are re-generated.
  */
-class {{ class }} {% if schema.getInterfaces() %}implements {{ viewHelper.joinClassNames(schema.getInterfaces()) }}{% endif %}
+class {{ class }} extends GeneratedModel {% if schema.getInterfaces() %}implements {{ viewHelper.joinClassNames(schema.getInterfaces()) }}{% endif %}
 {
     {% if schema.getTraits() %}use {{ viewHelper.joinClassNames(schema.getTraits()) }};{% endif %}
 
